@@ -95,15 +95,22 @@
 
 ## 使用步驟
 
-#### Step 1.依賴banner
-Gradle 
+#### Step 1. Gradle
+```
+allprojects {
+    repositories {
+        ...
+        maven { url 'https://jitpack.io' }
+    }
+}
+```
 ```
 dependencies{
     compile com.github.jeffyu0925:banner:1.0.0
 }
 ```
 
-#### Step 2.添加權限到你的 AndroidManifest.xml
+#### Step 2. 添加權限到你的 AndroidManifest.xml
 ```xml
 <!-- if you want to load images from the internet -->
 <uses-permission android:name="android.permission.INTERNET" /> 
@@ -112,16 +119,16 @@ dependencies{
 <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 ```
 
-#### Step 3.在佈局文件中添加Banner，可以設置自定義屬性
+#### Step 3. 在佈局文件中添加Banner，可以設置自定義屬性
 ！！！此步驟可以省略，直接在Activity或者Fragment中new Banner();
 ```xml
-<com.jeff.banner
+<com.jeff.banner.widget.Banner
     android:id="@+id/banner"
     android:layout_width="match_parent"
-    android:layout_height="高度自己設置" />
+    android:layout_height="高度自訂" />
 ```
 
-#### Step 4.重寫圖片加載器
+#### Step 4. 重寫圖片加載器
 ```java
 public class GlideImageLoader extends ImageLoader {
     @Override
@@ -156,7 +163,7 @@ public class GlideImageLoader extends ImageLoader {
 }
 ```
 
-#### Step 5.在Activity或者Fragment中配置Banner 
+#### Step 5. 在Activity或者Fragment中配置Banner 
 
 - 注意！start()方法必須放到最後執行，點擊事件請放到start()前，每次都提交問題問為什麼點擊沒有反應？需要輪播一圈才能點擊？點擊第一個怎麼返回1？麻煩仔細閱讀文檔。
 
